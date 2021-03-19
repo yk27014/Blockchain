@@ -60,17 +60,17 @@ namespace BlockchainAssignment
             // Calculate the merkle root of the blocks transactions
             merkleRoot = MerkleRoot(transactionList);
 
-            // 
+            // If dynamic difficulty is enabled.            
             if (BlockchainApp.getDynamicDifficulty() == true)
             {
-                // If the difficulty 
+                // If the block time of the last block was shorter than expected...
                 if (lastBlock.getBlockTime() < (Blockchain.getTotalBlockTime() / (lastBlock.getIndex() + 1)) * 0.125)
                 {
                     // Set difficulty to 5.
                     difficulty = 5;
                 }
 
-                // 
+                // If the block time of the last block was longer than expected...
                 else if (lastBlock.getBlockTime() > (Blockchain.getTotalBlockTime() / (lastBlock.getIndex() + 1)) * 1.25)
                 {
                     // Set difficulty to 3.
@@ -78,6 +78,7 @@ namespace BlockchainAssignment
 
                 }
 
+                // Otherwise set the difficulty to 4.
                 else
                 {
                     // Set difficulty to 4.
@@ -85,9 +86,10 @@ namespace BlockchainAssignment
                 }
             }
 
-            //
+            // Start to initialise hash. 
             mineHash();
 
+            // Adjust total block time.
             Blockchain.incrementTotalBlockTime(blockTime);
         }
 
@@ -109,10 +111,13 @@ namespace BlockchainAssignment
 
         private String minerAddress;
 
+        // Number only used once (nonce) used to solve the proof-of-work puzzle.
         private long nonce;
 
+        // e-nonce for threading.
         private long eNonceEven;
 
+        // e-nonce for threading.
         private long eNonceOdd;
 
         private String hashEven = String.Empty;
@@ -212,25 +217,44 @@ namespace BlockchainAssignment
             return tempHash; // Return the hash meeting the difficulty requirement
         }
 
+        /// <summary>
+        /// Initial mine method when threading is enabled.
+        /// </summary>
+        /// <returns>Hash of the block.</returns>
         public string ThreadedMine()
         {
+            // Initialises the value of the first e-nonce to 0.
             eNonceEven = 0;
+
+            // Initialises the value of the second e-nonce to 1.
             eNonceOdd = 1;
 
+            // First additional thread for mining.
             Thread evenMineThread = new Thread(EvenMine);
+
+            // Second addtional thread for mining.
             Thread oddMineThread = new Thread(OddMine);
 
+            // Start thread for generating hashes with e-nonce with numbers that are even.
             evenMineThread.Start();
+
+            // Start thread for generating hashes with e-nonce with numbers that are odd.
             oddMineThread.Start();
             
+            // While both threads are running...
             while (evenMineThread.IsAlive == true || oddMineThread.IsAlive == true)
             { 
+                // Sleep the main thread.
                 Thread.Sleep(1);
             }
             
+            // If the even hash solved the puzzle...
             if (hashEven.StartsWith(new string('0', difficulty)))
             {
+                // Set the value of the nonce to the even valued e-nonce.
                 nonce = eNonceEven;
+
+                // Return the value of the (even) hash.
                 return hashEven;
             }
 
