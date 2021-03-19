@@ -169,9 +169,14 @@ namespace BlockchainAssignment
             return merkleRoot;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void mineHash()
         {
+            // stop watch used generate block time.
             var stopWatch = new System.Diagnostics.Stopwatch();
+
 
             stopWatch.Start();
 
@@ -192,7 +197,10 @@ namespace BlockchainAssignment
             Console.WriteLine("Difficulty: " + difficulty + " " + "Time: " + blockTime);
         }
 
-        // Create a Hash which satisfies the difficulty level required for PoW
+        /// <summary>
+        /// Create a Hash which satisfies the difficulty level required for PoW
+        /// </summary>
+        /// <returns>Hash of the block.</returns>
         public String Mine()
         {
             // Initalise the nonce
@@ -258,30 +266,42 @@ namespace BlockchainAssignment
                 return hashEven;
             }
 
+            // Otherwise...
             else
             {
+                // Set the value of the nonce to the odd valued e-nonce.
                 nonce = eNonceOdd;
+
+                // Return the value of the (odd) hash.
                 return hashOdd;
             }
         }
 
         /// <summary>
-        /// 
+        /// Mining method that uses the nonce with even values. 
         /// </summary>
         public void EvenMine()
         {
+            // Number of 0s the hash should start with.
             string re = new string('0', difficulty);
 
+            // While the hash does not begin with 0.
             while (!hashEven.StartsWith(re))
             {
+                // Increment the nonce by 2.
                 eNonceEven += 2;
 
+                // Create hash.
                 hashEven = ThreadedCreateHash(eNonceEven);
                 
+                // If the other thread has solved the puzzle...
                 if (hashOdd.StartsWith(re) == true)
                 {
+                    // Sleep thread.
                     Thread.Sleep(1);
-                    return;
+
+                    // Exit loop.
+                    break;
                 }
             }
         }
@@ -291,18 +311,26 @@ namespace BlockchainAssignment
         /// </summary>
         public void OddMine()
         {
+            // Number of 0s the hash should start with.
             string re = new string('0', difficulty);
 
+            // While the hash does not begin with 0.
             while (!hashOdd.StartsWith(re))
             {
+                // Increment the nonce by 2.
                 eNonceOdd += 2;
 
+                // Create hash.
                 hashOdd = ThreadedCreateHash(eNonceOdd);
 
+                // If the other thread has solved the puzzle...
                 if (hashEven.StartsWith(re) == true)
                 {
+                    // Sleep thread.
                     Thread.Sleep(1);
-                    return;
+
+                    // Exit loop.
+                    break;
                 }
             }
         }
@@ -338,8 +366,8 @@ namespace BlockchainAssignment
         /// <summary>
         /// Creates a hash of the block using its properties as inputs.
         /// </summary>
-        /// <param name="enonce"></param>
-        /// <returns></returns>
+        /// <param name="enonce">extra nonce.</param>
+        /// <returns>hash of block.</returns>
         public String ThreadedCreateHash(long enonce)
         {
             // Stores hash of block.
