@@ -42,15 +42,25 @@ namespace BlockchainAssignment
 
         private int miningSettingID;
 
+        // Boolean to determine whether threading will be used.
         private static bool threading;
 
+        // Boolean to determine whether dynamic difficulty will be applied.
         private static bool dynamicDifficulty;
 
+        /// <summary>
+        /// Getter for threading.
+        /// </summary>
+        /// <returns>threading</returns>
         public static bool getThreading()
         {
             return threading;
         }
 
+        /// <summary>
+        /// Getter for dynamic difficulty.
+        /// </summary>
+        /// <returns>dynamicDifficulty</returns>
         public static bool getDynamicDifficulty()
         {
             return dynamicDifficulty;
@@ -120,7 +130,7 @@ namespace BlockchainAssignment
         }
 
         /// <summary>
-        /// 
+        /// Create new block.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
