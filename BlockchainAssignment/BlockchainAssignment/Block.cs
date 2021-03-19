@@ -22,17 +22,27 @@ namespace BlockchainAssignment
             previousHash = String.Empty;
             transactionList = new List<Transaction>();
             
-            // 
+            // Calls mine hash.
             mineHash();
 
             Blockchain.incrementTotalBlockTime(blockTime);
         }
 
+        /// <summary>
+        /// Constructor for the block.
+        /// </summary>
+        /// <param name="lastBlock">The last block in the chain.</param>
+        /// <param name="transactions">Transactions to be stored in the block.</param>
+        /// <param name="minerAddress">Miner's address.</param>
         public Block(Block lastBlock, List<Transaction> transactions, String minerAddress)
         {
-            // 
+            // When the block was created.
             timestamp = DateTime.Now;
+
+            // Index of the block.
             index = lastBlock.getIndex() + 1;
+
+            // Previous hash.
             previousHash = lastBlock.getHash();
 
             // The wallet to be credited the reward for the mining effort.
@@ -50,24 +60,27 @@ namespace BlockchainAssignment
             // Calculate the merkle root of the blocks transactions
             merkleRoot = MerkleRoot(transactionList);
 
-
+            // 
             if (BlockchainApp.getDynamicDifficulty() == true)
             {
                 // If the difficulty 
                 if (lastBlock.getBlockTime() < (Blockchain.getTotalBlockTime() / (lastBlock.getIndex() + 1)) * 0.125)
                 {
+                    // Set difficulty to 5.
                     difficulty = 5;
                 }
 
                 // 
                 else if (lastBlock.getBlockTime() > (Blockchain.getTotalBlockTime() / (lastBlock.getIndex() + 1)) * 1.25)
                 {
+                    // Set difficulty to 3.
                     difficulty = 3;
 
                 }
 
                 else
                 {
+                    // Set difficulty to 4.
                     difficulty = 4;
                 }
             }
