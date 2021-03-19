@@ -26,3 +26,12 @@ C:\Users\james\OneDrive - University of Reading\Blockchain\BlockchainAssignment\
 C:\Users\james\OneDrive - University of Reading\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.csproj.GenerateResource.cache
 C:\Users\james\OneDrive - University of Reading\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.exe
 C:\Users\james\OneDrive - University of Reading\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.pdb
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\bin\Debug\BlockchainAssignment.exe.config
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\bin\Debug\BlockchainAssignment.exe
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\bin\Debug\BlockchainAssignment.pdb
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.csprojAssemblyReference.cache
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.BlockchainApp.resources
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.Properties.Resources.resources
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.csproj.GenerateResource.cache
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.exe
+C:\Users\james\OneDrive - University of Reading\Blockchain\Blockchain\BlockchainAssignment\BlockchainAssignment\obj\Debug\BlockchainAssignment.pdb
