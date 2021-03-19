@@ -170,28 +170,34 @@ namespace BlockchainAssignment
         }
 
         /// <summary>
-        /// 
+        /// Determines whether or not threading is to be used. 
         /// </summary>
         public void mineHash()
         {
-            // stop watch used generate block time.
+            // Stop watch used generate block time.
             var stopWatch = new System.Diagnostics.Stopwatch();
 
-
+            // Starts the stop watch.
             stopWatch.Start();
 
+            // If threading is false...
             if (BlockchainApp.getThreading() == false)
             {
+                // Call normal threading method.
                 hash = Mine();
             }
 
+            // Otherwise...
             else
             {
+                // Apply threaded mining method.
                 hash = ThreadedMine();
             }
 
+            // Stop the stop watch.
             stopWatch.Stop();
 
+            // Set block time equal to the time elapsed from the stop watch.
             blockTime = stopWatch.ElapsedMilliseconds;
 
             Console.WriteLine("Difficulty: " + difficulty + " " + "Time: " + blockTime);

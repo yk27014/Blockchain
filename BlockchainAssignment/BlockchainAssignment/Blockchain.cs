@@ -148,23 +148,29 @@ namespace BlockchainAssignment
                         }
                     }
 
-                    
+                    // Foreach transaction in transaction pool...
                     foreach (Transaction transaction in transactionPool)
                     {
+                        // If the block can store more transactions...
                         if (transactions.Count() < numOfTransactions)
                         {
+                            // And it has not got currently selected transaction...
                             if (transactions.Contains(transaction) == false)
                             {
+                                // Add transaction to the block.
                                 transactions.Add(transaction);
                             }
                         }
 
+                        // Otherwise...
                         else
                         {
+                            // Exit loop.
                             break;
                         }
                     }
                     
+                    // Remove stored transactions from the transaction pool.
                     foreach (Transaction transaction in transactions)
                     {
                         transactionPool.Remove(transaction);
